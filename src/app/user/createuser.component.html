@@ -1,0 +1,87 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 cls-create-appartement">
+  <div class="card">
+    <div class="header">
+      <h2>Create User</h2>
+    </div>
+    <div class="body">
+      <div class="example-container">
+        <form class="example-form" [formGroup]="userForm" (ngSubmit)="onCreateUser()">
+
+          <mat-form-field class="col-12">
+            <input matInput placeholder="First Name" [formControl]="firstNameControl"
+                   [errorStateMatcher]="matcher" [(ngModel)]="newUser.firstName">
+            <!--<mat-hint>Errors appear instantly!</mat-hint>-->
+            <mat-error *ngIf="!firstNameControl.hasError('required')">
+              Please enter a valid First Name
+            </mat-error>
+            <mat-error *ngIf="firstNameControl.hasError('required')">
+              First Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="col-12">
+            <input matInput placeholder="Last Name" [formControl]="lastNameControl" [(ngModel)]="newUser.lastName"
+                      [errorStateMatcher]="matcher">
+            <!--<mat-hint>Errors appear instantly!</mat-hint>-->
+            <mat-error *ngIf="!lastNameControl.hasError('required')">
+              Please enter a valid Last Name
+            </mat-error>
+            <mat-error *ngIf="lastNameControl.hasError('required')">
+              Last Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="col-6">
+            <mat-select placeholder="Select Gender" [formControl]="genderControl">
+              <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                {{gender.text}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="!lastNameControl.hasError('required')">
+              Please select gender
+            </mat-error>
+            <mat-error *ngIf="lastNameControl.hasError('required')">
+              Gender is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <div class="col-6">
+
+          </div>
+
+          <mat-form-field class="col-12">
+            <input matInput placeholder="Email" [formControl]="emailControl" [(ngModel)]="newUser.email"
+                   [errorStateMatcher]="matcher">
+            <!--<mat-hint>Errors appear instantly!</mat-hint>-->
+            <mat-error *ngIf="!emailControl.hasError('required')">
+              Please enter a valid Email
+            </mat-error>
+            <mat-error *ngIf="emailControl.hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="col-12">
+            <input matInput placeholder="Phone" [formControl]="phoneControl" [(ngModel)]="newUser.phone"
+                   [errorStateMatcher]="matcher">
+            <!--<mat-hint>Errors appear instantly!</mat-hint>-->
+            <mat-error *ngIf="!phoneControl.hasError('required')">
+              Please enter a valid Email
+            </mat-error>
+            <mat-error *ngIf="phoneControl.hasError('required')">
+              Phone is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <div class="button-row col-12">
+
+            <button mat-raised-button class="btn-right" type="submit">Create</button>
+            <button mat-raised-button class="btn-right" (click)="onBack()" >Back</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

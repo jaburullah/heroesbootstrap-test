@@ -1,0 +1,65 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 cls-create-appartement">
+  <div class="card">
+    <div class="header">
+      <h2>Create Appartement</h2>
+    </div>
+    <div class="body">
+      <div class="example-container">
+        <form class="example-form" [formGroup]="myForm" (ngSubmit)="onCreateAppartment()">
+
+          <mat-form-field class="col-12">
+            <input matInput placeholder="Name" [formControl]="nameFormControl"
+                   [errorStateMatcher]="matcher" [(ngModel)]="newAppartment.name">
+            <!--<mat-hint>Errors appear instantly!</mat-hint>-->
+            <mat-error *ngIf="!nameFormControl.hasError('required')">
+              Please enter a valid Name
+            </mat-error>
+            <mat-error *ngIf="nameFormControl.hasError('required')">
+              Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="col-12">
+            <textarea matInput placeholder="Address" [formControl]="addressFormControl" [(ngModel)]="newAppartment.address"
+                      [errorStateMatcher]="matcher"></textarea>
+            <!--<mat-hint>Errors appear instantly!</mat-hint>-->
+            <mat-error *ngIf="!addressFormControl.hasError('required')">
+              Please enter a valid Address
+            </mat-error>
+            <mat-error *ngIf="addressFormControl.hasError('required')">
+              Address is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="col-4">
+            <input matInput placeholder="No.of Floors" [formControl]="noOfFloorsFormControl" [(ngModel)]="newAppartment.noOfFloors"
+                   [errorStateMatcher]="matcher">
+            <!--<mat-hint>Errors appear instantly!</mat-hint>-->
+            <mat-error *ngIf="!noOfFloorsFormControl.hasError('required')">
+              Please enter a valid Floors
+            </mat-error>
+            <mat-error *ngIf="noOfFloorsFormControl.hasError('required')">
+              Floors is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <div class="col-8">
+
+          </div>
+
+          <mat-form-field class="col-12">
+              <mat-select placeholder="Select Manager" [formControl]="managers" multiple [(ngModel)]="newAppartment.managerId">
+                <mat-option *ngFor="let manager of managersList" [value]="manager">{{manager}}</mat-option>
+              </mat-select>
+          </mat-form-field>
+
+          <div class="button-row col-12">
+
+            <button mat-raised-button class="btn-right" type="submit">Create</button>
+            <button mat-raised-button class="btn-right" (click)="onBack()" >Back</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
